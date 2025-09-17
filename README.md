@@ -5,7 +5,7 @@ Kaggle competition submission code for house price prediction using regression.
  
 Competition Description: Predict the final price of each home (SalePrice) based on house characteristics, location, and quality metrics.
 
-<h3> Dataset:<!h3>
+ <h2>Dataset: </h2>
   - Training Data: 1,460 houses with known sale prices
   - Test Data: 1,459 houses requiring price predictions
   - Features: 79 variables including:
@@ -14,11 +14,12 @@ Competition Description: Predict the final price of each home (SalePrice) based 
   - Ordinal Features: Overall quality, kitchen quality, basement rating
   - Time Features: Year built, year sold, remodel dates
 
-Evaluation metric:
+<h2>Evaluation metric:</h2>
  - the submission csv results are calculated based on RMSE
  - this work achieved a RMSE of 0.13875 (1785/4146)
 
-File Structure:
+<h2>File Structure:</h2>
+
  - rand_forest.py -> main file, managing the project pipeline, model training and hyperparameter tuning
  - dataset_analysis.py  -> data exploration and feature engineering
  - missing_value_handler.py -> advanced missing data imputation with MCAR, MNAR and MAR method
