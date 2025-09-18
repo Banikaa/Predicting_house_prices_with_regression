@@ -6,13 +6,20 @@ Kaggle competition submission code for house price prediction using regression.
 Competition Description: Predict the final price of each home (SalePrice) based on house characteristics, location, and quality metrics.
 
  <h2>Dataset:</h2>
-  - Training Data: 1,460 houses with known sale prices
-  - Test Data: 1,459 houses requiring price predictions
-  - Features: 79 variables including:
-  - Categorical Features: Neighborhood, house style, exterior materials, basement conditions
-  - Numerical Features: Lot size, living area, number of rooms, garage capacity
-  - Ordinal Features: Overall quality, kitchen quality, basement rating
-  - Time Features: Year built, year sold, remodel dates
+  <ul>
+  <li>Training Data: 1,460 houses with known sale prices</li>
+  <li>Test Data: 1,459 houses requiring price predictions</li>
+  <li>
+    Features: 79 variables including:
+    <ul>
+      <li>Categorical Features: Neighborhood, house style, exterior materials, basement conditions</li>
+      <li>Numerical Features: Lot size, living area, number of rooms, garage capacity</li>
+      <li>Ordinal Features: Overall quality, kitchen quality, basement rating</li>
+      <li>Time Features: Year built, year sold, remodel dates</li>
+    </ul>
+  </li>
+</ul>
+
   
 
 <h2>Evaluation metric:</h2>
