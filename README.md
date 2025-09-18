@@ -27,27 +27,49 @@ Competition Description: Predict the final price of each home (SalePrice) based 
  - inference.py -> prediction generation and submission
 
 <h2>Pipeline:</h2>
- 1. Analyse and load the data  
-   - CSV read and transformed into a pandas dataframe  
-   - Check the target variable's distribution and normalise it:  
-     * Plotting the distribution and the QQ plot, as well as calculating the skewness and kurtosis  
-     * High skewness and tail-heavy distribution → applying log normalisation improved skewness (1.89 → 0.12)  
-   - Analyse and handle missing data:  
-     - Missing values that are not randomly missing are set to `'0'` or `'None'`  
-     - For values assumed MCAR/MAR/MNAR, impute based on observed distribution:  
-       * Numbers → sampled from the normal distribution with random noise for variance  
-       * Categorical → sampled from the observed distribution of populated rows  
-   - Feature engineering: add more relevant features such as `TotalBathrooms`, `OverallQuality`, and binary values (e.g. Pool/No Pool)  
-   - Keep most important features based on correlation analysis (threshold chosen to keep <25 features as dataset has 1460 samples)  
-   - Resulting features transformed for model processing with `LabelEncoder` for Random Forest training  
+ <ol>
+  <li>
+    Analyse and load the data
+    <ul>
+      <li>CSV read and transformed into a pandas dataframe</li>
+      <li>
+        Check the target variable's distribution and normalise it:
+        <ul>
+          <li>Plot the distribution and QQ plot; compute skewness and kurtosis</li>
+          <li>High skewness and tail-heavy distribution → log normalisation improved skew (1.89 → 0.12)</li>
+        </ul>
+      </li>
+      <li>
+        Analyse and handle missing data:
+        <ul>
+          <li>For non-random missingness, set values to <code>0</code> or <code>None</code></li>
+          <li>For MCAR/MAR/MNAR, impute from observed distributions:
+            <ul>
+              <li>Numeric → sample from observed normal distribution with noise</li>
+              <li>Categorical → sample from observed category frequencies</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Feature engineering: add <code>TotalBathrooms</code>, <code>OverallQuality</code>, and binary flags (e.g., Pool / No Pool)</li>
+      <li>Select most important features via correlation (thresholds chosen to keep &lt; 25 features given 1,460 samples)</li>
+      <li>Transform features for model processing with <code>LabelEncoder</code> for Random Forest training</li>
+    </ul>
+  </li>
 
-2. Same process for the test data (without target variable analysis)  
+  <li>Same process for the test data (without target variable analysis)</li>
 
-3. Train Random Forest and tune hyperparameters with GridSearch  
-   - Split training set 80/20 with validation for more accurate tuning results  
-   - Train the best model on the whole training dataset  
+  <li>
+    Train Random Forest and tune hyperparameters with GridSearch
+    <ul>
+      <li>Split training set 80/20; use validation for more accurate tuning</li>
+      <li>Train the best model on the full training data</li>
+    </ul>
+  </li>
 
-4. Model evaluation and saving results in competition format (`csv` with columns: `Id`, `SalePrice`)  
+  <li>Model evaluation and save results in competition format: CSV with columns <code>Id</code>, <code>SalePrice</code></li>
+</ol>
+
 
       
          
