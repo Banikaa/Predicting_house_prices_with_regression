@@ -27,23 +27,28 @@ Competition Description: Predict the final price of each home (SalePrice) based 
  - inference.py -> prediction generation and submission
 
 <h2>Pipeline:</h2>
- 1. analyse and load the data:
-      - csv read and tranformed into a pandas dataframe
-      - check the target variable's distribution and Normalise it:
-         * plotting the distribution and the QQ plot, as well as calculating the skewness and Kurtosis -> high skewness and tail-heavy distribution -> applying log Normalised the data grealy (skew 1.89 -> 0.12)
-      - analysisng and adding missing data: adding the values based on the column type and domain knowledge, using MCAR, MAR and MNAR technique
-              - missing values that are not randomly missing are set to '0' or 'None'
-              - and the ones that are not random, to keep the model as statistically sound as possible, the missing value is sampled from the observed distribution:
-                  * numbers are sampled from the Normal distribution observed with random noise for variance
-                  * missing categorical features are sampled from the observed distribution of the populated rows
-     - feature engineering: adding more relevant features such as: TotalBathrooms, OverallQuality and binary values (eg. Pool/No Pool).
-     - keep most important features based on correlation analysis, where the tresholds for correlation were chosen to keep the total number of features undder 25 as the training dataset has 1460 samples.
-     - resulting features are tranformed for model processing with LabelEncoder for training Random Forest algorithm.
-2. Same for the Test data but without target variable analysis
-3. train Random Forest and do hyperparameter tuning with gridsearch
-    - split training set in 80/20, adding validation for more accurate hyperparam tuning results
-    - trained best model on the whole training data
-4. Model evaluation and saving results in competition format: csv with col: 'Id', 'SalePrice'
+ 1. Analyse and load the data  
+   - CSV read and transformed into a pandas dataframe  
+   - Check the target variable's distribution and normalise it:  
+     * Plotting the distribution and the QQ plot, as well as calculating the skewness and kurtosis  
+     * High skewness and tail-heavy distribution → applying log normalisation improved skewness (1.89 → 0.12)  
+   - Analyse and handle missing data:  
+     - Missing values that are not randomly missing are set to `'0'` or `'None'`  
+     - For values assumed MCAR/MAR/MNAR, impute based on observed distribution:  
+       * Numbers → sampled from the normal distribution with random noise for variance  
+       * Categorical → sampled from the observed distribution of populated rows  
+   - Feature engineering: add more relevant features such as `TotalBathrooms`, `OverallQuality`, and binary values (e.g. Pool/No Pool)  
+   - Keep most important features based on correlation analysis (threshold chosen to keep <25 features as dataset has 1460 samples)  
+   - Resulting features transformed for model processing with `LabelEncoder` for Random Forest training  
+
+2. Same process for the test data (without target variable analysis)  
+
+3. Train Random Forest and tune hyperparameters with GridSearch  
+   - Split training set 80/20 with validation for more accurate tuning results  
+   - Train the best model on the whole training dataset  
+
+4. Model evaluation and saving results in competition format (`csv` with columns: `Id`, `SalePrice`)  
+
       
          
     
